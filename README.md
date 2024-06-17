@@ -13,3 +13,6 @@ pip install plotly
 pip install pandas
 pip install textblob
 pip install pillow
+```
+Video Example
+https://github.com/siddhismayekar/OTT-Dashboard/assets/117754791/ef9e3e6f-200c-4007-9753-64200a3364a4
