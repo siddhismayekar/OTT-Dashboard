@@ -292,7 +292,7 @@ hierarchical_df = filtered_df.groupby(['country', 'genre', 'release_year', 'type
 hierarchical_df['color'] = pd.Categorical(hierarchical_df['country']).codes
 
 # Streamlit Title
-st.title('TOP 10 Countries - Hierarchical')
+st.subheader(f'TOP 10 Countries - Hierarchical :red[{title}]')
 
 # Display Treemap
 fig = px.treemap(hierarchical_df,
@@ -305,54 +305,6 @@ fig = px.treemap(hierarchical_df,
 
 st.plotly_chart(fig)
 
-#Create and filter Heatmap
-
-if 'date_added' in df.columns:
-    st.subheader(f'Movies or TV Shows Which are Added on Platform by Year :red[{title}]')
-        # Convert 'date_added' to datetime with 'coerce' option
-    df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
-
-    # Drop rows with NaT (parsing errors)
-    df = df.dropna(subset=['date_added'])
-
-    # Extract day, month, and year
-    df['day'] = df['date_added'].dt.day
-    df['month'] = df['date_added'].dt.strftime('%B')
-    df['year'] = df['date_added'].dt.year
-
-    # USER INPUT
-    selected_year = st.number_input("Enter the year to display (e.g., 2021): ", value=2021, min_value=int(df['year'].min()), max_value=int(df['year'].max()))
-
-    # Check if the selected year exists in the DataFrame
-    if selected_year in df['year'].unique():
-        # Filter the DataFrame based on the selected year
-        selected_data = df[df['year'] == selected_year]
-        # Pivot the dataframe to create the heatmap
-        pivot_df = selected_data.pivot_table(values='show_id', index='month', 
-                                             columns='day', aggfunc='count', fill_value=0)
-
-        # Create heatmap using Plotly Express
-        fig = px.imshow(
-            pivot_df,
-            labels=dict(x='Day', y='Month', color='Number of Shows'),
-            y=pivot_df.index,
-            color_continuous_scale='YlGnBu'
-        )
-
-        # Update layout
-        fig.update_layout(
-            title=f'Heatmap of Shows/Movies Added in {selected_year}',
-            xaxis_title='Day',
-            yaxis_title='Month',
-            width=1450,
-            height=500
-        )
-
-        # Show the plot using Streamlit
-        st.plotly_chart(fig)
-
-    else:
-        st.write(f"No data available for the year {selected_year}.")
 
 
 
