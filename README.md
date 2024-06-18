@@ -1,7 +1,7 @@
 # OTT-Dashboard
 # Streamlit Application
 
-This repository contains a Streamlit application that leverages various libraries for data visualization, sentiment analysis, and image processing. Follow the instructions below to set up and run the application.
+This repository contains a Streamlit application that leverages various libraries for data visualization, and sentiment analysis. Follow the instructions below to set up and run the application.
 
 ## Installation
 
@@ -12,7 +12,7 @@ pip install streamlit
 pip install plotly
 pip install pandas
 pip install textblob
-pip install pillow
+pip install streamlit-card
 ```
 Video Example
 
