@@ -5,7 +5,6 @@ import os
 from streamlit_card import card 
 from textblob import TextBlob
 import warnings
-from PIL import Image
 warnings.filterwarnings('ignore')
 
 st.set_page_config(page_title="OTT Platform Dashboard!!!", page_icon=":bar_chart:",layout="wide")
